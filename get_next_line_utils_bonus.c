@@ -6,14 +6,14 @@
 /*   By: emimenza <emimenza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/18 11:01:04 by emimenza          #+#    #+#             */
-/*   Updated: 2023/10/18 11:01:06 by emimenza         ###   ########.fr       */
+/*   Updated: 2023/10/23 08:44:06 by emimenza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "get_next_line_bonus.h"
 
 	//CLEANS ALL THE NODES OF THE LIST AND SET NEW NODE AS FIRST IF HAS SMTH
-void	free_list(t_list **list, t_list *new_node, char *buf, int mode)
+void	ft_free_list(t_list **list, t_list *new_node, char *buf, int mode)
 {
 	t_list	*tmp;
 
@@ -41,12 +41,12 @@ void	free_list(t_list **list, t_list *new_node, char *buf, int mode)
 }
 
 	//COPY THE buffer OF THE NODES OF THE LIST IN STR TILL THE JUMP LINE
-void	copy_str(t_list *list, char *str)
+void	ft_copy_str(t_list *list, char *str)
 {
 	int	i;
 	int	k;
 
-	if (list == NULL)
+	if (!list)
 		return ;
 	k = 0;
 	while (list)
@@ -68,7 +68,7 @@ void	copy_str(t_list *list, char *str)
 }
 
 	//RETURNS THE NBR OF CHARS TILL THE JUMP LINE
-int	size_to_newline(t_list *list)
+int	ft_size_to_newline(t_list *list)
 {
 	t_list	*current;
 	int		count;
@@ -95,7 +95,7 @@ int	size_to_newline(t_list *list)
 }
 
 	//FOUND IF THERES ANY JUMP LINE IN ANY OF THE NODES
-int	found_newline(t_list *list)
+int	ft_found_newline(t_list *list)
 {
 	t_list	*current;
 	char	*buffer;
@@ -118,7 +118,7 @@ int	found_newline(t_list *list)
 }
 
 	//RETURN THE LAST NODE OF THE LIST 
-t_list	*list_last_node(t_list *lst)
+t_list	*ft_list_last_node(t_list *lst)
 {
 	while (lst)
 	{

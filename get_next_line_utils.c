@@ -6,14 +6,14 @@
 /*   By: emimenza <emimenza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/05 09:22:23 by emimenza          #+#    #+#             */
-/*   Updated: 2023/10/10 13:39:06 by emimenza         ###   ########.fr       */
+/*   Updated: 2023/10/23 08:57:45 by emimenza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
 	//CLEANS ALL THE NODES OF THE LIST AND SET NEW NODE AS FIRST IF HAS SMTH
-void	free_list(t_list **list, t_list *new_node, char *buf, int mode)
+void	ft_free_list(t_list **list, t_list *new_node, char *buf, int mode)
 {
 	t_list	*tmp;
 
@@ -40,8 +40,8 @@ void	free_list(t_list **list, t_list *new_node, char *buf, int mode)
 	}
 }
 
-	//COPY THE CONTENT OF THE NODES OF THE LIST IN STR TILL THE JUMP LINE
-void	copy_str(t_list *list, char *str)
+	//COPY THE buffer OF THE NODES OF THE LIST IN STR TILL THE JUMP LINE
+void	ft_copy_str(t_list *list, char *str)
 {
 	int	i;
 	int	k;
@@ -68,57 +68,57 @@ void	copy_str(t_list *list, char *str)
 }
 
 	//RETURNS THE NBR OF CHARS TILL THE JUMP LINE
-int	size_to_newline(t_list *list)
+int	ft_size_to_newline(t_list *list)
 {
-	int	count;
-	int	i;
+	t_list	*current;
+	int		count;
+	char	*buffer;
 
-	if (list == NULL)
-		return (0);
+	current = list;
 	count = 0;
-	while (list)
+	while (current != NULL)
 	{
-		i = 0;
-		while (list->buffer[i])
+		buffer = current->buffer;
+		while (*buffer != '\0')
 		{
-			if (list->buffer[i] == '\n')
+			if (*buffer == '\n')
 			{
-				count ++;
+				count++;
 				return (count);
 			}
 			count++;
-			i++;
+			buffer++;
 		}
-		list = list->next;
+		current = current->next;
 	}
 	return (count);
 }
 
 	//FOUND IF THERES ANY JUMP LINE IN ANY OF THE NODES
-int	found_newline(t_list *list)
+int	ft_found_newline(t_list *list)
 {
-	int	i;
+	t_list	*current;
+	char	*buffer;
 
-	if (NULL == list)
-		return (0);
-	while (list)
+	current = list;
+	while (current != NULL)
 	{
-		i = 0;
-		while (list->buffer[i] && i < BUFFER_SIZE)
+		buffer = current->buffer;
+		while (*buffer != '\0')
 		{
-			if (list->buffer[i] == '\n')
+			if (*buffer == '\n')
 			{
 				return (1);
 			}
-			i++;
+			buffer++;
 		}
-		list = list->next;
+		current = current->next;
 	}
 	return (0);
 }
 
 	//RETURN THE LAST NODE OF THE LIST 
-t_list	*list_last_node(t_list *lst)
+t_list	*ft_list_last_node(t_list *lst)
 {
 	while (lst)
 	{
